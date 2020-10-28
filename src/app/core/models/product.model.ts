@@ -6,5 +6,6 @@ export interface Product {
     brand: string;
     price: number;
     stock: number;
+    selected: boolean; // For UI only
   }
   

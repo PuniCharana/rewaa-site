@@ -1,30 +1,39 @@
-<table class="table table-hover mt-3">
-    <thead>
-        <tr>
-            <th><input type="checkbox"  value=""></th>
-            <th>ID</th>
-            <th>Thumbnail</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Brand</th>
-            <th>Price</th>
-            <th>Stock</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let product of products; let i = index;">
-            <td><input type="checkbox"  value="" (change)="selectProduct($event, product.id)"></td>
-            <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.id}}</td>
-            <td style="cursor: pointer;" (click)="viewProduct(product.id)"><img src="{{product.thumbnail}}" alt="{{product.name}}"></td>
-            <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.name}}</td>
-            <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.description}}</td>
-            <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.brand}}</td>
-            <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.price}}</td>
-            <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.stock}}</td>
-            <td>
-                <a class="action-delete" (click)="deleteProduct($event, i, product.id)">Delete</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="row  m-3">
+    <div class="col-md-6">
+        <!-- TODO add search -->
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+        <button (click)="createProduct()" type="button" class="btn btn-info">Create Product</button>
+        &nbsp;&nbsp;
+        <button (click)="deleteProduct()" type="button" class="btn btn-danger">Delete</button>
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th><input type="checkbox" [checked]="selectall" (change)="selectAll()"></th>
+                <th>ID</th>
+                <th>Thumbnail</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Brand</th>
+                <th>Price</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products; let i = index;">
+                <td><input type="checkbox" [checked]="product.selected" (change)="selectProduct(i, product.id, product.selected)"></td>
+                <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.id}}</td>
+                <td style="cursor: pointer;" (click)="viewProduct(product.id)"><img src="{{product.thumbnail}}"
+                        alt="{{product.name}}"></td>
+                <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.name}}</td>
+                <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.description}}</td>
+                <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.brand}}</td>
+                <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.price}}</td>
+                <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.stock}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

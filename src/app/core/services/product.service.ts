@@ -23,8 +23,8 @@ export class ProductService {
     return this.http.get<Product>(this._productUrl + '/' + id);
   }
 
-  deleteProduct(id): Observable<any> {
-    return this.http.delete(this._productUrl + '/' + id);
+  deleteProduct(ids): Observable<any> {
+    return this.http.delete(this._productUrl + '/?ids=' + ids);
   }
 
   addProduct(data): Observable<Product> {

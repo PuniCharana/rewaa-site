@@ -11,31 +11,68 @@ import { ProductService } from 'src/app/core/services/product.service';
 export class ListingComponent implements OnInit {
 
   products: Product[] = [];
+  selectall: boolean = false;
 
   constructor(private router: Router, private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts() {
     this.productService.getProducts({}).subscribe((products) => {
-      this.products = products;
+      this.initProducts(products);
     })
+  }
+
+  initProducts(products) {
+    this.products = [];
+    products.map(product => { product.selected = false });
+    this.products = products;
   }
 
   viewProduct(id) {
     this.router.navigateByUrl('products/' + id);
   }
 
-  deleteProduct(event, index, id) {
-    event.stopPropagation();
-    var response = confirm(`Are you sure you want to delete product id = ${id}`);
-    if (response == true) {
-      this.productService.deleteProduct(id).subscribe((response)=> {
-        this.products.splice(index, 1);
-      });
+  deleteProduct() {
+    var ids = [];
+    this.products.map((product) => {
+      if (product.selected) {
+        ids.push(product.id);
+      }
+    });
+
+    if (ids.length) {
+      var response = confirm(`Are you sure you want to delete product id = ${ids}`);
+      if (response == true) {
+        this.productService.deleteProduct(ids).subscribe((response) => {
+          this.getProducts();
+        }, (error) => {
+          console.log(error)
+        })
+      }
+    } else {
+      alert("Nothing to delete!");
     }
   }
 
-  selectProduct(event, id) {
-    event.stopPropagation();
+  selectProduct(index, id, selected) {
+    this.products[index].selected = !selected;
+    if (this.products.filter((product) => product.selected).length >= this.products.length) {
+      this.selectall = true
+    } else {
+      this.selectall = false
+    }
+  }
+
+  selectAll() {
+    this.selectall = !this.selectall;
+    this.products.map(product => { product.selected = this.selectall });
+  }
+
+  createProduct() {
+    this.router.navigateByUrl('/products/create');
   }
 
 }
