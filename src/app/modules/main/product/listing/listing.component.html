@@ -13,7 +13,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let product of products;">
+        <tr *ngFor="let product of products; let i = index;">
             <td><input type="checkbox"  value="" (change)="selectProduct($event, product.id)"></td>
             <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.id}}</td>
             <td style="cursor: pointer;" (click)="viewProduct(product.id)"><img src="{{product.thumbnail}}" alt="{{product.name}}"></td>
@@ -23,7 +23,7 @@
             <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.price}}</td>
             <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.stock}}</td>
             <td>
-                <a class="action-delete" (click)="deleteProduct($event, product.id)">Delete</a>
+                <a class="action-delete" (click)="deleteProduct($event, i, product.id)">Delete</a>
             </td>
         </tr>
     </tbody>

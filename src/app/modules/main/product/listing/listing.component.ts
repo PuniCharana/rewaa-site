@@ -24,12 +24,12 @@ export class ListingComponent implements OnInit {
     this.router.navigateByUrl('products/' + id);
   }
 
-  deleteProduct(event, id) {
+  deleteProduct(event, index, id) {
     event.stopPropagation();
     var response = confirm(`Are you sure you want to delete product id = ${id}`);
     if (response == true) {
       this.productService.deleteProduct(id).subscribe((response)=> {
-        console.log(response);
+        this.products.splice(index, 1);
       });
     }
   }

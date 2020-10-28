@@ -19,5 +19,7 @@ export const productRoutes: Routes = [
 ];
 
 export const productComponents = [
-  ListingComponent
+  ListingComponent,
+  DetailsComponent,
+  CreateComponent
 ];
