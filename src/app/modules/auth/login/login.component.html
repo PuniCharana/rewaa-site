@@ -1,12 +1,12 @@
 <div id="login">
-    <form>
+    <form [formGroup]="loginForm">
       <div class="form-group">
         <label for="email">Email address:</label>
-        <input type="email" class="form-control" placeholder="Enter email" id="email">
+        <input type="email" class="form-control" formControlName="email" placeholder="Enter email" id="email">
       </div>
       <div class="form-group">
         <label for="pwd">Password:</label>
-        <input type="password" class="form-control" placeholder="Enter password" id="pwd">
+        <input type="password" class="form-control" formControlName="password" placeholder="Enter password" id="pwd">
       </div>
       <div class="form-group form-check">
         <label class="form-check-label">
@@ -14,7 +14,7 @@
         </label>
       </div>
       <div class="d-flex  justify-content-end">
-        <button type="button" (click)="login()" class="btn btn-info">Login</button>
+        <button [disabled]="loginForm.invalid" type="button" (click)="login()" class="btn btn-info">Login</button>
       </div>
     </form>
   </div>

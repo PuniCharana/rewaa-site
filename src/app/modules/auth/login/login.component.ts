@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 
@@ -9,15 +10,30 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private authService: AuthService) { }
+  loginForm: FormGroup;
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    public formBuilder: FormBuilder
+  ) {
+    this.loginForm = formBuilder.group({
+      email: [null, Validators.required],
+      password: [null, Validators.required]
+    });
+  }
 
   ngOnInit() {
   }
 
   login() {
-    // TODO: Dummy login for now
-    this.authService.setTokenInLocalStorage("TOKEN");
-    this.router.navigateByUrl('/');
+    this.authService.login(this.loginForm.getRawValue()).subscribe(() => {
+      // TODO replace with actual token
+      this.authService.setTokenInLocalStorage("TOKEN");
+      this.router.navigateByUrl('/');
+    }, (error) => {
+      alert('Password/email does not match');
+    })
   }
 
 }

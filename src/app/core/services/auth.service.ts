@@ -10,20 +10,6 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  sendOtp(phoneNumber): Observable<any> {
-    return this.http.post(AppConstants.API_URL + 'user/check', {
-      phone_number: phoneNumber
-    });
-  }
-
-  verifyOtp(phoneNumber, otp, uid): Observable<any> {
-    return this.http.post(AppConstants.API_URL + 'user/verify', {
-      phone_number: phoneNumber,
-      id: uid,
-      code: otp
-    });
-  }
-
   /**
    * @param <token>
    * @description Store user token in local storage for authenticate logged in user
@@ -38,6 +24,10 @@ export class AuthService {
   getToken() {
     const token = JSON.parse(localStorage.getItem(AppConstants.AUTH_TOKEN_KEY));
     return token ? token : null;
+  }
+
+  login(data): Observable<any> {
+    return this.http.post(AppConstants.API_URL + '/auth', data);
   }
 
   logout(): Observable<any> {
