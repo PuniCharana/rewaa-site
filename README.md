@@ -2,7 +2,8 @@
 Rewaa interview assignment project
 
 ## Requirements
-First run the [Rewaa API](https://github.com/PuniCharana/rewaa-api) server
+1. First run the [Rewaa API](https://github.com/PuniCharana/rewaa-api) server
+2. [Angular](https://angular.io/)
 
 ## How to run the app
 
