@@ -1,0 +1,21 @@
+  <table class="table table-hover mt-3">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users;" (click)="viewUser(user.id)">
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>
+            <span *ngIf="user.active == 1" class="badge badge-pill badge-success">Active</span>
+            <span *ngIf="user.active == 0" class="badge badge-pill badge-danger">Inactive</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>

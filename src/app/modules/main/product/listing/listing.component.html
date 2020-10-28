@@ -1,0 +1,30 @@
+<table class="table table-hover mt-3">
+    <thead>
+        <tr>
+            <th><input type="checkbox"  value=""></th>
+            <th>ID</th>
+            <th>Thumbnail</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products;">
+            <td><input type="checkbox"  value="" (change)="selectProduct($event, product.id)"></td>
+            <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.id}}</td>
+            <td style="cursor: pointer;" (click)="viewProduct(product.id)"><img src="{{product.thumbnail}}" alt="{{product.name}}"></td>
+            <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.name}}</td>
+            <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.description}}</td>
+            <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.brand}}</td>
+            <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.price}}</td>
+            <td style="cursor: pointer;" (click)="viewProduct(product.id)">{{product.stock}}</td>
+            <td>
+                <a class="action-delete" (click)="deleteProduct($event, product.id)">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

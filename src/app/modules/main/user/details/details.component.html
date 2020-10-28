@@ -1,0 +1,11 @@
+<div class="card" style="width:250px">
+    <img class="card-img-top" src="https://picsum.photos/200" style="height: 200px;" alt="Card image">
+    <div class="card-body">
+      <h4 class="card-title">{{user?.name}}</h4>
+      <p class="card-text">{{user?.email}}</p>
+      <p>
+        <span *ngIf="user?.active == 1" class="badge badge-pill badge-success">Active</span>
+        <span *ngIf="user?.active == 0" class="badge badge-pill badge-danger">Inactive</span>
+      </p>
+    </div>
+  </div>
